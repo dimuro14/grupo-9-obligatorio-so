@@ -1,17 +1,14 @@
-import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MLQ {
     
-    public ConcurrentLinkedQueue<Proceso> colaAlta = null;
-    public ConcurrentLinkedQueue<Proceso> colaMedia = null;
-    public ConcurrentLinkedQueue<Proceso> colaBaja = null;
+    //Atención de emergencias
+    ConcurrentLinkedQueue<Paciente> colaAlta = null;
+    //Atención de consultas generales
+    ConcurrentLinkedQueue<Paciente> colaMedia = null;
+    //Atención de curaciones y análisis clínicos
+    ConcurrentLinkedQueue<Paciente> colaBaja = null;
 
-    public Queue<Proceso> getColaAlta() { return colaAlta; }
-    public Queue<Proceso> getColaMedia() { return colaMedia; }
-    public Queue<Proceso> getColaBaja() { return colaBaja;}
-
-    
     public MLQ() {
 
         this.colaAlta = new ConcurrentLinkedQueue<>();
@@ -20,52 +17,58 @@ public class MLQ {
     
     }
 
-    
     //Cambiar Proceso por Consulta?
-    public void agregarACola(String cola, Proceso proceso, int prioridad) {
+    public void agregarACola(Paciente paciente) {
 
-        switch (cola) {
+        //Añadir a su respectiva cola
+        
+        //Tener en cuenta:
+
+        //Cola Alta
+        //tipoConsulta = "Emergencia"
+        //tipoConsulta = "Urgencia"
+
+        //Cola Media y Baja
+        //tipoConsulta = "CarneDeSalud"
+        //y cualquier otro tipo de consulta
+
+        if (paciente.tipoConsulta == "Emergencia" || paciente.tipoConsulta == "Urgencia") {
             
-            case "ALTA":
-                colaAlta.add(proceso, prioridad);
-                break;
+            colaAlta.add(paciente);
+        
+        } else if (paciente.tipoConsulta == "CarneDeSalud" || paciente.tipoConsulta == "ConsultaGeneral") {
             
-            case "MEDIA":
-                colaMedia.add(proceso, prioridad);
-                break;
+            colaMedia.add(paciente);
+        
+        } else {
             
-            case "BAJA":
-                colaBaja.add(proceso, prioridad);
-                break;
-            
-            default:
-                System.out.println("Prioridad no válida: " + prioridad);
+            colaBaja.add(paciente);
         
         }
     
     }
 
-    public void start() {
+    public void start() throws InterruptedException {
 
         //Añadir procesos a las colas antes de utilizar el método start.
         
         Thread alta = new Thread(new PlanificadorFCFS(this.colaAlta));
-        Thread media = new Thread(new PlanificadorRR(this.colaMedia, 1000));
+        Thread media = new Thread(new PlanificadorFCFS(this.colaMedia));
         Thread baja = new Thread(new PlanificadorFCFS(this.colaBaja));
 
-        Thread envejecedor = new Thread(new Envejecedor(this.colaBaja, this.colaMedia, 3000));
+        //Thread envejecedor = new Thread(new Envejecedor(this.colaBaja, this.colaMedia, 3000));
 
         alta.start();
         alta.join();
 
-        envejecedor.start();
+        //envejecedor.start();
 
         media.start();
         baja.start();
 
         media.join();
         baja.join();
-        envejecedor.join();
+        //envejecedor.join();
     
     }
 

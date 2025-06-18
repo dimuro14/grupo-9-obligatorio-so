@@ -1,38 +1,23 @@
 public class Paciente {
 
     String tipoConsulta = null;
+    boolean informeOdontologo = false;
 
-    public Paciente(String tipoConsulta) {
+    public Paciente(String tipoConsulta, boolean informeOdontologo) {
 
         this.tipoConsulta = tipoConsulta;
+        this.informeOdontologo = informeOdontologo;
 
     }
 
-    public void agregarACola(MLQ mlq) {
+    public static Paciente crearPacienteAleatorio() {
 
-        //Añadir a su respectiva cola y establecer su prioridad
-        int duracion = (int)(Math.random() * 4000) + 1000; // 
-        Proceso p = new Proceso(this.tipoConsulta, duracion);
-        
-        //Tener en cuenta:
+        String[] tiposConsulta = {"General", "Especialista", "Urgencia", "Emergencia", "CarneDeSalud", "ConsultaGeneral"};
+        String tipoConsulta = tiposConsulta[(int) (Math.random() * tiposConsulta.length)];
+        boolean informeOdontologo = Math.random() < 0.5; // 50% de probabilidad
 
-        //Cola Alta
-        //tipoConsulta = "Emergencia"
-        //tipoConsulta = "Urgencia"
+        return new Paciente(tipoConsulta, informeOdontologo);
 
-        //Cola Media y Baja
-        //tipoConsulta = "CarneDeSalud"
-        //y cualquier otro tipo de consulta
-        switch (tipoConsulta.toLowerCase()) {
-            case "emergencia", "urgencia" -> mlq.getColaAlta().add(p);
-            case "carnedesalud", "consulta" -> mlq.getColaMedia().add(p);
-            case "analisis" -> mlq.getColaBaja().add(p);
-            default -> mlq.getColaBaja().add(p);
-
-        }
-         
-        System.out.println("Paciente agregado: " + tipoConsulta + " con duración " + duracion + " ms");
-        
     }
 
 }

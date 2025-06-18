@@ -7,7 +7,7 @@ public class Main {
         int tiempoConsulta = 0;
         boolean salaReservadaEmergencia = false;
         
-        CentroMedico.start(nroInicialPacientes);
+        CentroMedico.start(nroInicialPacientes, pacientesPorHora);
     
     }
 

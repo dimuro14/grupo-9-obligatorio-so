@@ -1,20 +1,31 @@
 import java.util.Queue;
 
 public class PlanificadorFCFS implements Runnable {
-    private Queue<Proceso> cola;
+    
+    private Queue<Paciente> cola;
 
-    public PlanificadorFCFS(Queue<Proceso> cola) {
+    public PlanificadorFCFS(Queue<Paciente> cola) {
+        
         this.cola = cola;
+    
     }
 
     @Override
     public void run() {
+        
         while (!cola.isEmpty()) {
-            Proceso p = cola.poll();
+            
+            Paciente p = cola.poll();
+            
             if (p != null) {
-                p.run();
-                System.out.println("Terminado: " + p.getNombre());
+
+                //p.run();
+                //System.out.println("Terminado: " + p.getNombre());
+            
             }
+        
         }
+
     }
+
 }
