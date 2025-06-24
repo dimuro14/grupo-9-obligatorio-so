@@ -1,55 +1,17 @@
 public class CentroMedico {
-
-	public static class ConsultorioMedico extends Thread {
-		
-		public ConsultorioMedico(String str) {
-	        
-		    super(str);
-		    
-		}
-
-	    @Override
-	    public void run() {
-
-			//Añadir while true?
-	 
-			//Tomar un elemento de la cola de pacientes (MLQ)
-			//Si no hay pacientes, esperar
-
-			//Si el enfermero está ocupado, esperarlo
-
-			//Si hay un paciente en espera en uno de los dos consultorios médicos, atenderlo
-
-	    }
-	    
-	}
-
-	public static class SalaEnfermeria extends Thread {
-		
-		public SalaEnfermeria(String str) {
-	        
-		    super(str);
-		    
-		}
-
-	    @Override
-	    public void run() {
-
-			//Añadir while true?
-	 
-			//Tomar un elemento de la cola de pacientes (MLQ)
-			//Si no hay pacientes, esperar
-
-			//Si el enfermero está ocupado, esperarlo
-
-			//Si hay un paciente en espera en uno de los dos consultorios médicos, atenderlo
-			
-	    }
-	    
-	}
 	
+	//Añadir constructor con parámetros?
+
 	@SuppressWarnings("unused")
     public static void start(int nroInicialPacientes, int pacientesPorHora) throws Exception {
+
+		//Tener en cuenta:
+		//1 sala de enfermería
+		//2 consultorios médicos
+
+		//Crear semáforos para pacientes, médicos y enfermeros?
+		Semaphore medicos = new Semaphore(2);
+		Semaphore enfermeros = new Semaphore(1);
 
 		//Inicializar MLQ
 		MLQ mlq = new MLQ();
@@ -58,12 +20,11 @@ public class CentroMedico {
 		Horario horario = new Horario(mlq, nroInicialPacientes, pacientesPorHora);
 		horario.start();
 
-		//Tener en cuenta como semáforos:
-		//1 sala de enfermería
-		//2 consultorios médicos
+		ConsultorioMedico consultorio1 = new ConsultorioMedico("Consultorio 1", horario, mlq, medicos, enfermeros);
+		//ConsultorioMedico consultorio2 = new ConsultorioMedico(2, mlq, medicos, enfermeros);
+		consultorio1.start();
+		//consultorio2.start();
 
-		//Los semáforos serían los consultorios o los médicos/enfermeros?
-		
     }
     
 }

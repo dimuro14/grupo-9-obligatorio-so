@@ -11,12 +11,24 @@ public class Horario extends Thread {
     
     HashMap<Paciente, Integer> tiempoDeEspera = new HashMap<>();
 
-    public Horario(MLQ mlq, int nroInicialPacientes,int pacientesPorHora) {
+    public Horario(MLQ mlq, int nroInicialPacientes, int pacientesPorHora) {
         
         this.hora = new AtomicInteger(8);
         this.mlq = mlq;
         this.nroInicialPacientes = nroInicialPacientes;
         this.pacientesPorHora = pacientesPorHora;
+
+    }
+
+    public int getHora() {
+        
+        return hora.get();
+    
+    }
+
+    public int getHoraCierre() {
+        
+        return 20;
 
     }
 

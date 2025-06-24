@@ -17,7 +17,6 @@ public class MLQ {
     
     }
 
-    //Cambiar Proceso por Consulta?
     public void agregarACola(Paciente paciente) {
 
         //Añadir a su respectiva cola
@@ -44,6 +43,31 @@ public class MLQ {
             
             colaBaja.add(paciente);
         
+        }
+    
+    }
+
+    public Paciente tomarPaciente() {
+        
+        //Tomar un paciente de la cola de mayor prioridad que tenga pacientes
+        //Si no hay pacientes en ninguna cola, retornar null
+
+        if (!colaAlta.isEmpty()) {
+            
+            return colaAlta.poll();
+        
+        } else if (!colaMedia.isEmpty()) {
+            
+            return colaMedia.poll();
+        
+        } else if (!colaBaja.isEmpty()) {
+            
+            return colaBaja.poll();
+        
+        } else {
+            
+            return null;
+
         }
     
     }
