@@ -32,6 +32,8 @@ public class Horario extends Thread {
 			//Crear Paciente  
 			Paciente nuevoPaciente = Paciente.crearPacienteAleatorio();
 			mlq.agregarACola(nuevoPaciente);
+            //Log nuevo paciente añadido
+            Logger.log("Nuevo paciente ingresado: Hora:" + hora.get() + ":00 ; Tipo de consulta:" + nuevoPaciente.tipoConsulta);
 
 		}
         
