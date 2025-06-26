@@ -1,4 +1,4 @@
-public static class SalaEnfermeria extends Thread {
+public class SalaEnfermeria extends Thread {
     
     public SalaEnfermeria(String str) {
         

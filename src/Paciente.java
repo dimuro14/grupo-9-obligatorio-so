@@ -22,7 +22,9 @@ public class Paciente {
         
         boolean informeOdontologo = Math.random() < 0.5; // 50% de probabilidad
 
-        return new Paciente(tipoConsulta, informeOdontologo);
+        Paciente nuevoPaciente = new Paciente(nombre, tipoConsulta, informeOdontologo);
+
+        return nuevoPaciente;
 
     }
 

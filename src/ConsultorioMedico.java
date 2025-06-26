@@ -1,4 +1,6 @@
-public static class ConsultorioMedico extends Thread {
+import java.util.concurrent.Semaphore;
+
+public class ConsultorioMedico extends Thread {
     
     Horario horario = null;
     MLQ mlq = null;
@@ -23,7 +25,15 @@ public static class ConsultorioMedico extends Thread {
             try {
                 
                 // Tomar paciente (esperar si no hay)
+                // Agregar semáforos de paciente
                 Paciente paciente = mlq.tomarPaciente();
+
+                if (paciente == null) {
+                
+                    continue; // No hay pacientes, esperar
+
+                }
+
                 System.out.println(getName() + " encontró paciente: " + paciente.nombre);
 
                 // Esperar médico disponible
@@ -38,7 +48,7 @@ public static class ConsultorioMedico extends Thread {
                 }
 
                 // Simular atención médica
-                Thread.sleep(1000);
+                Thread.sleep(200);
                 medicos.release();
                 System.out.println(getName() + " terminó con " + paciente.nombre);
 

@@ -1,0 +1,7 @@
+==== INICIO DE SIMULACION ====
+[20:47:48.553852200] Simulación iniciada
+[20:47:48.591416700] ==== ESTADÍSTICAS ====
+[20:47:48.617418100] Tiempo promedio de espera: 0 minutos
+[20:47:48.621406400] Uso total de CPU (tiempo ocupado): 0 minutos
+[20:47:48.623414400] Cantidad de pacientes atendidos: 0
+[20:47:48.734969600] Nuevo paciente ingresado: Hora:8:00 ; Tipo de consulta:Especialista

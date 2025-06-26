@@ -1,3 +1,5 @@
+import java.util.concurrent.Semaphore;
+
 public class CentroMedico {
 	
 	//Añadir constructor con parámetros?
@@ -9,7 +11,6 @@ public class CentroMedico {
 		//1 sala de enfermería
 		//2 consultorios médicos
 
-		//Crear semáforos para pacientes, médicos y enfermeros?
 		Semaphore medicos = new Semaphore(2);
 		Semaphore enfermeros = new Semaphore(1);
 
