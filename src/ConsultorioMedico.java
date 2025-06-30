@@ -26,7 +26,7 @@ public class ConsultorioMedico extends Thread {
                 
                 // Tomar paciente (esperar si no hay)
                 // Agregar semáforos de paciente
-                Paciente paciente = mlq.tomarPaciente();
+                Paciente paciente = mlq.tomarPaciente("ConsultorioMedico");
 
                 if (paciente == null) {
                 
@@ -47,6 +47,18 @@ public class ConsultorioMedico extends Thread {
                 enfermeros.release();
                 
                 System.out.println(getName() + ": Terminó de atender a " + paciente.nombre);
+
+                if ((paciente.tipoConsulta).equalsIgnoreCase("EntrevistaMedica")){
+                    if (!paciente.informeOdontologo){
+                        paciente.SetTipoConsulta("ConsultaOdontologica");
+                        mlq.agregarACola(paciente);
+                        System.out.println(getName() + ": Se transfirio el paciente a Consulta de Odontologia " + paciente.nombre);
+
+                    }
+                    
+
+
+                }
 
             } catch (InterruptedException e) {
                 

@@ -28,7 +28,7 @@ public class SalaEmergencia extends Thread {
                 // Agregar semáforos de paciente
 
                 // El paciente debe ser tomado exclusivamente si es una emergencia
-                Paciente paciente = mlq.tomarPaciente();
+                Paciente paciente = mlq.tomarPaciente("SalaEmergencia");
 
                 if (paciente == null) {
                 

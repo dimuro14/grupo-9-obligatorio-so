@@ -12,6 +12,10 @@ public class Paciente {
 
     }
 
+    public void SetTipoConsulta(String tipoConsulta){
+        this.tipoConsulta = tipoConsulta;  
+    }
+
     public static Paciente crearPacienteAleatorio() {
 
         String[] nombres = {"Juan", "María", "Pedro", "Ana", "Luis", "Laura", "Carlos", "Marta", "Javier", "Sofía"};

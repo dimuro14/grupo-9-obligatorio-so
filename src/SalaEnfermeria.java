@@ -25,7 +25,7 @@ public class SalaEnfermeria extends Thread {
                 // Agregar semáforos de paciente
 
                 // El paciente debe ser tomado exclusivamente si requiere ser atendido por un enfermero
-                Paciente paciente = mlq.tomarPaciente();
+                Paciente paciente = mlq.tomarPaciente("SalaEnfermeria");
 
                 if (paciente == null) {
                 
@@ -45,6 +45,13 @@ public class SalaEnfermeria extends Thread {
                 enfermeros.release();
 
                 System.out.println(getName() + ": Terminó de atender a " + paciente.nombre);
+                if ((paciente.tipoConsulta).equalsIgnoreCase("CarneDeSalud")){
+                    paciente.SetTipoConsulta("EntrevistaMedica");
+                    mlq.agregarACola(paciente);
+                    System.out.println(getName() + ": Se transfirio el paciente a Entrevista Medica " + paciente.nombre);
+
+
+                }
 
             } catch (InterruptedException e) {
                 

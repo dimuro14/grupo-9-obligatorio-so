@@ -22,7 +22,8 @@ public class MLQ {
         consultaASala.put("Emergencia", "SalaEmergencia");
         consultaASala.put("Urgencia", "SalaEmergencia");
         consultaASala.put("CarneDeSalud", "SalaEnfermeria");
-        consultaASala.put("ConsultaGeneral", "SalaEnfermeria");
+        consultaASala.put("EntrevistaMedica", "ConsultorioMedico");
+        consultaASala.put("ConsultaGeneral", "ConsultorioMedico");
         consultaASala.put("InformeOdontologia", "SalaOdontologia");
     
     }
@@ -41,18 +42,34 @@ public class MLQ {
         //tipoConsulta = "CarneDeSalud"
         //y cualquier otro tipo de consulta
 
-        if (paciente.tipoConsulta == "Emergencia" || paciente.tipoConsulta == "Urgencia") {
+        if (paciente.tipoConsulta == "Emergencia") {
             
-            colaAlta.add(paciente);
+            if (colaAlta.size() < 3) {
+                
+                colaAlta.add(paciente);
+
+            }
         
-        } else if (paciente.tipoConsulta == "CarneDeSalud" || paciente.tipoConsulta == "ConsultaGeneral") {
+        } else if (paciente.tipoConsulta == "Urgencia") {
             
-            colaMedia.add(paciente);
-        
-        } else {
+            if (colaMedia.size() < 10) {
+                
+                colaMedia.add(paciente);
+
+            } else {
+                
+                System.out.println("Paciente con urgencia no puede ser atendido.");
+            
+            }
+            
+        } else if (paciente.tipoConsulta == "CarneDeSalud" || paciente.tipoConsulta == "EntrevistaMedica" || paciente.tipoConsulta == "ConsultaGeneral" || paciente.tipoConsulta == "InformeOdontologia") {
             
             colaBaja.add(paciente);
         
+        } else {
+            
+            colaMedia.add(paciente);
+
         }
     
     }
@@ -70,7 +87,7 @@ public class MLQ {
         
         //Tomar un paciente de la cola de mayor prioridad que tenga pacientes
         //Si no hay pacientes en ninguna cola, retornar null
-
+        
         if (!colaAlta.isEmpty() && obtenerSala(colaAlta.peek().tipoConsulta) == sala) {
             
             return colaAlta.poll();

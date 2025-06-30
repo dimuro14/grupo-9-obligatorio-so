@@ -26,7 +26,7 @@ public class SalaOdontologia extends Thread {
                 // Agregar semáforos de paciente
 
                 // El paciente debe ser tomado exclusivamente si requiere ser atendido por un enfermero
-                Paciente paciente = mlq.tomarPaciente();
+                Paciente paciente = mlq.tomarPaciente("SalaOdontologia");
 
                 if (paciente == null) {
                 
