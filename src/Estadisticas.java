@@ -1,7 +1,7 @@
 public class Estadisticas {
     private static int totalPacientes = 0;
     /** Llamar cuando un paciente empieza a ser atendido */
-    public synchronized static void recordPatient() {
+    public synchronized static void sumarPaciente() {
         totalPacientes++;
     }
 
