@@ -32,11 +32,18 @@ public class Horario extends Thread {
 
     }
 
+    public synchronized int retirarTiempoEspera(Paciente p) {
+        int t = tiempoDeEspera.getOrDefault(p, 0);
+        tiempoDeEspera.remove(p);
+        return t;
+    }
+
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
     public void run() {
 
         System.out.println("Centro Médico - Abierto");
+        Logger.log("Centro Médico - Abierto");
 
         //Añadir pacientes iniciales a las colas (con un método que los genere aleatoriamente?)
 		for (int i = 0; i < nroInicialPacientes; i++) {
@@ -44,6 +51,7 @@ public class Horario extends Thread {
 			//Crear Paciente  
 			Paciente nuevoPaciente = Paciente.crearPacienteAleatorio();
 			mlq.agregarACola(nuevoPaciente);
+            tiempoDeEspera.put(nuevoPaciente, 0);
             //Log nuevo paciente añadido
             Logger.log("Nuevo paciente ingresado: Hora:" + hora.get() + ":00 ; Tipo de consulta:" + nuevoPaciente.tipoConsulta);
             Estadisticas.sumarPaciente();

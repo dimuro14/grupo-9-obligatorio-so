@@ -39,11 +39,15 @@ public class SalaEmergencia extends Thread {
                 // Interrumpir médicos y enfermeros si es necesario?
 
                 System.out.println(getName() + ": Paciente " + paciente.nombre + " en espera.");
+                Logger.log(getName() + ": Paciente " + paciente.nombre + " en espera.");
                 System.out.println(getName() + ": Esperando médico.");
+                Logger.log(getName() + ": Esperando médico.");
                 medicos.acquire();
                 System.out.println(getName() + ": Esperando asistente.");
+                Logger.log(getName() + ": Esperando asistente.");
                 enfermeros.acquire();
                 System.out.println(getName() + ": Atendiendo a " + paciente.nombre + ".");
+                Logger.log(getName() + ": Atendiendo a " + paciente.nombre + ".");
                 // Simular atención médica
                 Thread.sleep(200);
                 
@@ -51,10 +55,12 @@ public class SalaEmergencia extends Thread {
                 enfermeros.release();
                 
                 System.out.println(getName() + ": Terminó de atender a " + paciente.nombre);
+                Logger.log(getName() + ": Terminó de atender a " + paciente.nombre);
 
             } catch (InterruptedException e) {
                 
                 System.out.println(getName() + ": Atención interrumpida.");
+                Logger.log(getName() + ": Atención interrumpida.");
                 break;
             
             }
