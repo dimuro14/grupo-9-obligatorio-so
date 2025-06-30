@@ -16,12 +16,6 @@ public class Main {
         boolean salaReservadaEmergencia = false;
         
         CentroMedico.start(nroInicialPacientes, pacientesPorHora);
-
-        //Estadisticas finales para el logger
-        Logger.log("==== ESTADÍSTICAS ====");
-        Logger.log("Tiempo promedio de espera: " + promedioEspera + " minutos");
-        Logger.log("Uso total de CPU (tiempo ocupado): " + tiempoCPU + " minutos");
-        Logger.log("Cantidad de pacientes atendidos: " + totalAtendidos);
     
     }
 

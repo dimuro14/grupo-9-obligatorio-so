@@ -46,10 +46,11 @@ public class Horario extends Thread {
 			mlq.agregarACola(nuevoPaciente);
             //Log nuevo paciente añadido
             Logger.log("Nuevo paciente ingresado: Hora:" + hora.get() + ":00 ; Tipo de consulta:" + nuevoPaciente.tipoConsulta);
-
+            Estadisticas.sumarPaciente();
 		}
         
         System.out.println("Hora: " + hora.get() + ":00");
+        Logger.log("Hora: " + hora.get() + ":00");
 
         for (int i = 8; i < 20; i++) {
             
@@ -65,6 +66,7 @@ public class Horario extends Thread {
             
             hora.set(hora.get() + 1);
             System.out.println("Hora: " + hora.get() + ":00");
+            Logger.log("Hora: " + hora.get() + ":00");
             
             for (Paciente paciente : tiempoDeEspera.keySet()) {
                 
@@ -81,13 +83,15 @@ public class Horario extends Thread {
                 mlq.agregarACola(nuevoPaciente);
                 tiempoDeEspera.put(nuevoPaciente, 0);
                 //System.out.println("Nuevo paciente: " + nuevoPaciente.getNombre() + " añadido a la cola.");
+                Logger.log("Nuevo paciente: " + nuevoPaciente.nombre + " añadido a la cola.");
                 
             }
             
         }
 
         System.out.println("Centro Médico - Cerrado");
-        
+        Logger.log("Centro Médico - Cerrado");
+        Estadisticas.report();
     }
 	    
 }
