@@ -35,11 +35,19 @@ public class ConsultorioMedico extends Thread {
                 }
 
                 System.out.println(getName() + ": Paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ") en espera.");
+                Logger.log(getName() + ": Paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ") en espera.");
+                
                 System.out.println(getName() + ": Esperando médico.");
+                Logger.log(getName() + ": Esperando médico.");
                 medicos.acquire();
+                
                 System.out.println(getName() + ": Esperando asistente.");
+                Logger.log(getName() + ": Esperando asistente.");
                 enfermeros.acquire();
+
                 System.out.println(getName() + ": Atendiendo a " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
+                Logger.log(getName() + ": Atendiendo a " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
+
                 // Simular atención médica
                 Thread.sleep(200);
                 
@@ -47,6 +55,7 @@ public class ConsultorioMedico extends Thread {
                 enfermeros.release();
                 
                 System.out.println(getName() + ": Terminó de atender a " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
+                Logger.log(getName() + ": Terminó de atender a " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
 
                 if ((paciente.tipoConsulta).equalsIgnoreCase("EntrevistaMedica")){
                     
@@ -54,11 +63,14 @@ public class ConsultorioMedico extends Thread {
                         
                         paciente.SetTipoConsulta("ConsultaOdontologica");
                         mlq.agregarACola(paciente);
+                        
                         System.out.println(getName() + ": Se transfirio el paciente a Consulta de Odontologia " + paciente.nombre);
+                        Logger.log(getName() + ": Se transfirio el paciente a Consulta de Odontologia " + paciente.nombre);
                     
                     } else {
                         
                         System.out.println("Se entrego el carne de salud a " + paciente.nombre);
+                        Logger.log(getName() + ": Se transfirio el paciente a Consulta de Odontologia " + paciente.nombre);
 
                     }
                     
@@ -67,6 +79,8 @@ public class ConsultorioMedico extends Thread {
             } catch (InterruptedException e) {
                 
                 System.out.println(getName() + ": Atención interrumpida.");
+                Logger.log(getName() + ": Atención interrumpida.");
+                
                 break;
             
             }

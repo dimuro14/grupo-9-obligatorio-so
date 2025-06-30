@@ -48,7 +48,9 @@ public class Horario extends Thread {
                 //Si no hay odontologo, solo se pueden agregar pacientes de tipo Consulta General
                 if (nuevoPaciente.tipoConsulta.equals("CarneDeSalud") && nuevoPaciente.informeOdontologo == false) {
                     
-                    System.out.println("Paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") rechazado, no tiene informe odontólogico y no hay odontólogo.");
+                    System.out.println("Nuevo paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") rechazado: No tiene informe odontólogico y no hay odontólogo.");
+                    Logger.log("Nuevo paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") rechazado: Hora: " + hora.get() + ":00; No tiene informe odontólogico y no hay odontólogo.");
+                    
                     continue;
                 
                 }
@@ -58,7 +60,7 @@ public class Horario extends Thread {
             mlq.agregarACola(nuevoPaciente);
             
             //Log nuevo paciente añadido
-            Logger.log("Nuevo paciente ingresado: Hora:" + hora.get() + ":00 ; Tipo de consulta:" + nuevoPaciente.tipoConsulta);
+            Logger.log("Nuevo paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") ingresado: Hora: " + hora.get() + ":00");
         
         }
     
@@ -69,15 +71,12 @@ public class Horario extends Thread {
         //Añadir pacientes por hora, mediante un método de CentroMedico.
         for (int j = 0; j < pacientesPorHora; j++) {
             
-            //Crear Paciente  
             Paciente nuevoPaciente = Paciente.crearPacienteAleatorio();
             mlq.agregarACola(nuevoPaciente);
             
-            //System.out.println("Nuevo paciente: " + nuevoPaciente.getNombre() + " añadido a la cola.");
-            
-            //Log nuevo paciente añadido
-            //Logger.log("Nuevo paciente ingresado: Hora:" + hora.get() + ":00 ; Tipo de consulta:" + nuevoPaciente.tipoConsulta);
-    
+            System.out.println("Nuevo paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") ingresado: Hora: " + hora.get() + ":00");
+            Logger.log("Nuevo paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") ingresado: Hora: " + hora.get() + ":00");
+        
         
         } 
         
@@ -92,10 +91,12 @@ public class Horario extends Thread {
         agregarPacientesIniciales();
         
         System.out.println("Centro Médico - Abierto");
+        Logger.log("Centro Médico - Abierto");
 
         for (int i = 8; i < 20; i++) {
             
             System.out.println("Hora: " + hora.get() + ":00");
+            Logger.log("Hora: " + hora.get() + ":00");
 
             if (abierto == false) {
                 
@@ -129,7 +130,10 @@ public class Horario extends Thread {
         }
 
         System.out.println("Centro Médico - Cerrado");
+        Logger.log("Centro Médico - Cerrado");
         
+        Estadisticas.report();
+    
     }
 	    
 }
