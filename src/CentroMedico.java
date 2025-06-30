@@ -21,8 +21,9 @@ public class CentroMedico {
 		Horario horario = new Horario(mlq, nroInicialPacientes, pacientesPorHora);
 		horario.start();
 
-		ConsultorioMedico consultorio1 = new ConsultorioMedico("Consultorio 1", horario, mlq, medicos, enfermeros);
-		//ConsultorioMedico consultorio2 = new ConsultorioMedico(2, mlq, medicos, enfermeros);
+		SalaEmergencia consultorio1 = new SalaEmergencia("Consultorio 1", horario, mlq, medicos, enfermeros);
+		//ConsultorioMedico consultorio2 = new ConsultorioMedico("Consultorio 2", horario, mlq, medicos, enfermeros);
+		
 		consultorio1.start();
 		//consultorio2.start();
 

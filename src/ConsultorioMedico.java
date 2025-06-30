@@ -34,27 +34,23 @@ public class ConsultorioMedico extends Thread {
 
                 }
 
-                System.out.println(getName() + " encontró paciente: " + paciente.nombre);
-
-                // Esperar médico disponible
+                System.out.println(getName() + ": Paciente " + paciente.nombre + " en espera.");
+                System.out.println(getName() + ": Esperando médico.");
                 medicos.acquire();
-                System.out.println(getName() + " atendiendo a " + paciente.nombre);
-
-                if (enfermeros.availablePermits() > 0) {
-                    
-                    enfermeros.acquire();
-                    System.out.println(getName() + " tiene enfermero para " + paciente.nombre);
-                
-                }
-
+                System.out.println(getName() + ": Esperando asistente.");
+                enfermeros.acquire();
+                System.out.println(getName() + ": Atendiendo a " + paciente.nombre + ".");
                 // Simular atención médica
                 Thread.sleep(200);
+                
                 medicos.release();
-                System.out.println(getName() + " terminó con " + paciente.nombre);
+                enfermeros.release();
+                
+                System.out.println(getName() + ": Terminó de atender a " + paciente.nombre);
 
             } catch (InterruptedException e) {
                 
-                System.out.println(getName() + " interrumpido.");
+                System.out.println(getName() + ": Atención interrumpida.");
                 break;
             
             }

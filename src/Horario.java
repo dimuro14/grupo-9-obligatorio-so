@@ -78,6 +78,7 @@ public class Horario extends Thread {
                 
                 //Crear Paciente  
                 Paciente nuevoPaciente = Paciente.crearPacienteAleatorio();
+                mlq.agregarACola(nuevoPaciente);
                 tiempoDeEspera.put(nuevoPaciente, 0);
                 //System.out.println("Nuevo paciente: " + nuevoPaciente.getNombre() + " añadido a la cola.");
                 

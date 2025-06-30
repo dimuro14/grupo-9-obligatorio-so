@@ -1,23 +1,60 @@
+import java.util.concurrent.Semaphore;
 public class SalaEnfermeria extends Thread {
     
-    public SalaEnfermeria(String str) {
+    Horario horario = null;
+    MLQ mlq = null;
+    Semaphore enfermeros = null;
+
+    public SalaEnfermeria(String str, Horario horario, MLQ mlq, Semaphore enfermeros) {
         
         super(str);
+        this.horario = horario;
+        this.mlq = mlq;
+        this.enfermeros = enfermeros;
         
     }
 
     @Override
     public void run() {
 
-        //Añadir while true?
-    
-        //Tomar un elemento de la cola de pacientes (MLQ)
-        //Si no hay pacientes, esperar
+        while (horario.getHora() < horario.getHoraCierre()) {
+            
+            try {
+                
+                // Tomar paciente (esperar si no hay)
+                // Agregar semáforos de paciente
 
-        //Si el enfermero está ocupado, esperarlo
+                // El paciente debe ser tomado exclusivamente si requiere ser atendido por un enfermero
+                Paciente paciente = mlq.tomarPaciente();
 
-        //Si hay un paciente en espera en uno de los dos consultorios médicos, atenderlo
+                if (paciente == null) {
+                
+                    continue; // No hay pacientes, esperar
+
+                }
+
+                System.out.println(getName() + ": Paciente " + paciente.nombre + " en espera.");
+                System.out.println(getName() + ": Esperando enfermero.");
+                enfermeros.acquire();
+
+                System.out.println(getName() + ": Atendiendo a " + paciente.nombre + ".");
+                
+                // Simular atención médica
+                Thread.sleep(200);
+                
+                enfermeros.release();
+
+                System.out.println(getName() + ": Terminó de atender a " + paciente.nombre);
+
+            } catch (InterruptedException e) {
+                
+                System.out.println(getName() + ": Atención interrumpida.");
+                break;
+            
+            }
         
+        }
+    
     }
     
 }

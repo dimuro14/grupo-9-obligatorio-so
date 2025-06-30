@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class MLQ {
@@ -9,11 +11,19 @@ public class MLQ {
     //Atención de curaciones y análisis clínicos
     ConcurrentLinkedQueue<Paciente> colaBaja = null;
 
+    private static Map<String, String> consultaASala = new HashMap<>();
+
     public MLQ() {
 
         this.colaAlta = new ConcurrentLinkedQueue<>();
         this.colaMedia = new ConcurrentLinkedQueue<>();
         this.colaBaja = new ConcurrentLinkedQueue<>();
+
+        consultaASala.put("Emergencia", "SalaEmergencia");
+        consultaASala.put("Urgencia", "SalaEmergencia");
+        consultaASala.put("CarneDeSalud", "SalaEnfermeria");
+        consultaASala.put("ConsultaGeneral", "SalaEnfermeria");
+        consultaASala.put("InformeOdontologia", "SalaOdontologia");
     
     }
 
@@ -47,20 +57,29 @@ public class MLQ {
     
     }
 
-    public Paciente tomarPaciente() {
+    private String obtenerSala(String tipoConsulta) {
+
+        //Retorna la sala a la que corresponde el tipo de consulta
+        //Si no existe, retorna "SalaEnfermeria"
+
+        return consultaASala.getOrDefault(tipoConsulta, "SalaEnfermeria");
+    
+    }
+
+    public Paciente tomarPaciente(String sala) {
         
         //Tomar un paciente de la cola de mayor prioridad que tenga pacientes
         //Si no hay pacientes en ninguna cola, retornar null
 
-        if (!colaAlta.isEmpty()) {
+        if (!colaAlta.isEmpty() && obtenerSala(colaAlta.peek().tipoConsulta) == sala) {
             
             return colaAlta.poll();
         
-        } else if (!colaMedia.isEmpty()) {
+        } else if (!colaMedia.isEmpty() && obtenerSala(colaMedia.peek().tipoConsulta) == sala) {
             
             return colaMedia.poll();
         
-        } else if (!colaBaja.isEmpty()) {
+        } else if (!colaBaja.isEmpty() && obtenerSala(colaBaja.peek().tipoConsulta) == sala) {
             
             return colaBaja.poll();
         
