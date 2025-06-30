@@ -20,7 +20,7 @@ public class MLQ {
         this.colaBaja = new ConcurrentLinkedQueue<>();
 
         consultaASala.put("Emergencia", "SalaEmergencia");
-        consultaASala.put("Urgencia", "SalaEmergencia");
+        consultaASala.put("Urgencia", "ConsultorioMedico");
         consultaASala.put("CarneDeSalud", "SalaEnfermeria");
         consultaASala.put("EntrevistaMedica", "ConsultorioMedico");
         consultaASala.put("ConsultaGeneral", "ConsultorioMedico");
@@ -29,31 +29,21 @@ public class MLQ {
     }
 
     public void agregarACola(Paciente paciente) {
-
-        //Añadir a su respectiva cola
         
-        //Tener en cuenta:
-
-        //Cola Alta
-        //tipoConsulta = "Emergencia"
-        //tipoConsulta = "Urgencia"
-
-        //Cola Media y Baja
-        //tipoConsulta = "CarneDeSalud"
-        //y cualquier otro tipo de consulta
-
-        if (paciente.tipoConsulta == "Emergencia") {
+        if (paciente.tipoConsulta.equals("Emergencia")) {
             
             if (colaAlta.size() < 3) {
                 
+                System.out.println("Paciente agregado a cola alta: " + paciente.nombre + " (" + paciente.tipoConsulta + ")");
                 colaAlta.add(paciente);
 
             }
         
-        } else if (paciente.tipoConsulta == "Urgencia") {
+        } else if (paciente.tipoConsulta.equals("Urgencia")) {
             
             if (colaMedia.size() < 10) {
                 
+                System.out.println("Paciente agregado a cola media: " + paciente.nombre + " (" + paciente.tipoConsulta + ")");
                 colaMedia.add(paciente);
 
             } else {
@@ -62,15 +52,23 @@ public class MLQ {
             
             }
             
-        } else if (paciente.tipoConsulta == "CarneDeSalud" || paciente.tipoConsulta == "EntrevistaMedica" || paciente.tipoConsulta == "ConsultaGeneral" || paciente.tipoConsulta == "InformeOdontologia") {
+        } else if (paciente.tipoConsulta.equals("CarneDeSalud") || paciente.tipoConsulta.equals("EntrevistaMedica") || paciente.tipoConsulta.equals("ConsultaGeneral") || paciente.tipoConsulta.equals("InformeOdontologia")) {
             
+            System.out.println("Paciente agregado a cola baja: " + paciente.nombre + " (" + paciente.tipoConsulta + ")");
             colaBaja.add(paciente);
         
         } else {
             
+            System.out.println("Paciente agregado a cola media: " + paciente.nombre + " (" + paciente.tipoConsulta + ")");
             colaMedia.add(paciente);
 
         }
+    
+    }
+
+    public void agregarAColaMedia(Paciente paciente) {
+        
+        colaMedia.add(paciente);
     
     }
 
@@ -88,47 +86,27 @@ public class MLQ {
         //Tomar un paciente de la cola de mayor prioridad que tenga pacientes
         //Si no hay pacientes en ninguna cola, retornar null
         
-        if (!colaAlta.isEmpty() && obtenerSala(colaAlta.peek().tipoConsulta) == sala) {
+        if (!colaAlta.isEmpty() && (sala.equals(obtenerSala(colaAlta.peek().tipoConsulta)) || sala.equals("ConsultorioMedico"))) {
             
+            //System.out.println("Tomando paciente de cola alta: " + colaAlta.peek().nombre);
             return colaAlta.poll();
         
-        } else if (!colaMedia.isEmpty() && obtenerSala(colaMedia.peek().tipoConsulta) == sala) {
+        } else if (!colaMedia.isEmpty() && sala.equals(obtenerSala(colaMedia.peek().tipoConsulta))) {
             
+            //System.out.println("Tomando paciente de cola media: " + colaMedia.peek().nombre);
             return colaMedia.poll();
         
-        } else if (!colaBaja.isEmpty() && obtenerSala(colaBaja.peek().tipoConsulta) == sala) {
+        } else if (!colaBaja.isEmpty() && sala.equals(obtenerSala(colaBaja.peek().tipoConsulta))) {
             
+            //System.out.println("Tomando paciente de cola baja: " + colaBaja.peek().nombre);
             return colaBaja.poll();
         
         } else {
             
+            //System.out.println("No hay pacientes en la cola de " + sala);
             return null;
 
         }
-    
-    }
-
-    public void start() throws InterruptedException {
-
-        //Añadir procesos a las colas antes de utilizar el método start.
-        
-        Thread alta = new Thread(new PlanificadorFCFS(this.colaAlta));
-        Thread media = new Thread(new PlanificadorFCFS(this.colaMedia));
-        Thread baja = new Thread(new PlanificadorFCFS(this.colaBaja));
-
-        //Thread envejecedor = new Thread(new Envejecedor(this.colaBaja, this.colaMedia, 3000));
-
-        alta.start();
-        alta.join();
-
-        //envejecedor.start();
-
-        media.start();
-        baja.start();
-
-        media.join();
-        baja.join();
-        //envejecedor.join();
     
     }
 

@@ -45,12 +45,14 @@ public class SalaEnfermeria extends Thread {
                 enfermeros.release();
 
                 System.out.println(getName() + ": Terminó de atender a " + paciente.nombre);
+                
                 if ((paciente.tipoConsulta).equalsIgnoreCase("CarneDeSalud")){
+                    
                     paciente.SetTipoConsulta("EntrevistaMedica");
                     mlq.agregarACola(paciente);
+
                     System.out.println(getName() + ": Se transfirio el paciente a Entrevista Medica " + paciente.nombre);
-
-
+                
                 }
 
             } catch (InterruptedException e) {

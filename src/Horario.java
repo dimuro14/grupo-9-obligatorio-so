@@ -1,22 +1,24 @@
 
-import java.util.HashMap;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Horario extends Thread {
 		
     AtomicInteger hora = null;
+    Semaphore apertura = null;
     MLQ mlq = null;
     int nroInicialPacientes = 0;
     int pacientesPorHora = 0;
-    
-    HashMap<Paciente, Integer> tiempoDeEspera = new HashMap<>();
+    boolean odontologo = false;
 
-    public Horario(MLQ mlq, int nroInicialPacientes, int pacientesPorHora) {
+    public Horario(MLQ mlq, int nroInicialPacientes, int pacientesPorHora, boolean odontologo, Semaphore apertura) {
         
         this.hora = new AtomicInteger(8);
         this.mlq = mlq;
         this.nroInicialPacientes = nroInicialPacientes;
         this.pacientesPorHora = pacientesPorHora;
+        this.odontologo = odontologo;
+        this.apertura = apertura;
 
     }
 
@@ -32,27 +34,77 @@ public class Horario extends Thread {
 
     }
 
+    private void agregarPacientesIniciales() {
+
+        System.out.println("Agregando pacientes iniciales:");
+        
+        for (int i = 0; i < nroInicialPacientes; i++) {
+            
+            //Crear Paciente  
+            Paciente nuevoPaciente = Paciente.crearPacienteAleatorio();
+
+            if (odontologo == false) {
+
+                //Si no hay odontologo, solo se pueden agregar pacientes de tipo Consulta General
+                if (nuevoPaciente.tipoConsulta.equals("CarneDeSalud") && nuevoPaciente.informeOdontologo == false) {
+                    
+                    System.out.println("Paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") rechazado, no tiene informe odontólogico y no hay odontólogo.");
+                    continue;
+                
+                }
+
+            }
+
+            mlq.agregarACola(nuevoPaciente);
+            
+            //Log nuevo paciente añadido
+            Logger.log("Nuevo paciente ingresado: Hora:" + hora.get() + ":00 ; Tipo de consulta:" + nuevoPaciente.tipoConsulta);
+        
+        }
+    
+    }
+
+    private void agregarPacientesPorHora() {
+
+        //Añadir pacientes por hora, mediante un método de CentroMedico.
+        for (int j = 0; j < pacientesPorHora; j++) {
+            
+            //Crear Paciente  
+            Paciente nuevoPaciente = Paciente.crearPacienteAleatorio();
+            mlq.agregarACola(nuevoPaciente);
+            
+            //System.out.println("Nuevo paciente: " + nuevoPaciente.getNombre() + " añadido a la cola.");
+            
+            //Log nuevo paciente añadido
+            //Logger.log("Nuevo paciente ingresado: Hora:" + hora.get() + ":00 ; Tipo de consulta:" + nuevoPaciente.tipoConsulta);
+    
+        
+        } 
+        
+    }
+
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
     public void run() {
 
-        System.out.println("Centro Médico - Abierto");
+        boolean abierto = false;
 
-        //Añadir pacientes iniciales a las colas (con un método que los genere aleatoriamente?)
-		for (int i = 0; i < nroInicialPacientes; i++) {
-		  	
-			//Crear Paciente  
-			Paciente nuevoPaciente = Paciente.crearPacienteAleatorio();
-			mlq.agregarACola(nuevoPaciente);
-            //Log nuevo paciente añadido
-            Logger.log("Nuevo paciente ingresado: Hora:" + hora.get() + ":00 ; Tipo de consulta:" + nuevoPaciente.tipoConsulta);
-
-		}
+        agregarPacientesIniciales();
         
-        System.out.println("Hora: " + hora.get() + ":00");
+        System.out.println("Centro Médico - Abierto");
 
         for (int i = 8; i < 20; i++) {
             
+            System.out.println("Hora: " + hora.get() + ":00");
+
+            if (abierto == false) {
+                
+                abierto = true;
+
+                apertura.release(); // Liberar el semáforo para indicar que el centro médico está abierto
+
+            }
+
             try {
                 
                 Thread.sleep(1000);
@@ -64,24 +116,14 @@ public class Horario extends Thread {
             }
             
             hora.set(hora.get() + 1);
-            System.out.println("Hora: " + hora.get() + ":00");
+
+            agregarPacientesPorHora();
+
+            if (mlq.colaBaja.size() > 10) {
+                
+                Paciente paciente = mlq.colaBaja.poll();
+                mlq.agregarAColaMedia(paciente);
             
-            for (Paciente paciente : tiempoDeEspera.keySet()) {
-                
-                int tiempoActual = tiempoDeEspera.get(paciente);
-                tiempoDeEspera.put(paciente, tiempoActual + 1);
-                
-            }
-            
-            //Añadir pacientes por hora, mediante un método de CentroMedico.
-            for (int j = 0; j < pacientesPorHora; j++) {
-                
-                //Crear Paciente  
-                Paciente nuevoPaciente = Paciente.crearPacienteAleatorio();
-                mlq.agregarACola(nuevoPaciente);
-                tiempoDeEspera.put(nuevoPaciente, 0);
-                //System.out.println("Nuevo paciente: " + nuevoPaciente.getNombre() + " añadido a la cola.");
-                
             }
             
         }

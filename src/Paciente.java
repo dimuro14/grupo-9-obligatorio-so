@@ -21,7 +21,7 @@ public class Paciente {
         String[] nombres = {"Juan", "María", "Pedro", "Ana", "Luis", "Laura", "Carlos", "Marta", "Javier", "Sofía"};
         String nombre = nombres[(int) (Math.random() * nombres.length)];
         
-        String[] tiposConsulta = {"General", "Especialista", "Urgencia", "Emergencia", "CarneDeSalud", "ConsultaGeneral"};
+        String[] tiposConsulta = {"Emergencia", "Urgencia", "CarneDeSalud", "ConsultaGeneral"};
         String tipoConsulta = tiposConsulta[(int) (Math.random() * tiposConsulta.length)];
         
         boolean informeOdontologo = Math.random() < 0.5; // 50% de probabilidad
