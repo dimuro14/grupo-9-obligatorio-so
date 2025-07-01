@@ -60,12 +60,6 @@ public class Main {
         
         CentroMedico.start(nroInicialPacientes, pacientesPorHora, tiempoConsulta, numMedicos, numEnfermeros, salaReservadaEmergencia, odontologo);
         
-        // Estadisticas finales para el logger
-        // Logger.log("==== ESTADÍSTICAS ====");
-        // Logger.log("Tiempo promedio de espera: " + promedioEspera + " minutos");
-        // Logger.log("Uso total de CPU (tiempo ocupado): " + tiempoCPU + " minutos");
-        // Logger.log("Cantidad de pacientes atendidos: " + totalAtendidos);
-
     }
 
 }

@@ -59,6 +59,8 @@ public class ConsultorioMedico extends Thread {
                 System.out.println(getName() + ": Terminó de atender a " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
                 Logger.log(getName() + ": Terminó de atender a " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
 
+                Estadisticas.sumarPaciente();
+
                 if ((paciente.tipoConsulta).equalsIgnoreCase("EntrevistaMedica")){
                     
                     if (!paciente.informeOdontologo){
@@ -68,11 +70,15 @@ public class ConsultorioMedico extends Thread {
                         
                         paciente.SetTipoConsulta("ConsultaOdontologia");
                         mlq.agregarAColaOdontologia(paciente);    
-                        
+                            
+                        Estadisticas.sumarPaciente();
+
                     } else {
                         
                         System.out.println(getName() + ": Se entregó el carne de salud al paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
                         Logger.log(getName() + ": Se entregó el carne de salud al paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
+                        
+                        Estadisticas.sumarPaciente();
 
                     }
                     
