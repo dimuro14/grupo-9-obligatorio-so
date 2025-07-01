@@ -141,7 +141,43 @@ public class MLQ {
     }
 
     public boolean getColasVacias() {
+    
+        //System.out.println(colaAlta.isEmpty() + " " + colaMedia.isEmpty() + " " + colaBaja.isEmpty() + " " + colaOdontologia.isEmpty());
         
+        if (!colaAlta.isEmpty()) {
+         
+            for (Paciente paciente : colaAlta) {
+
+                System.out.println("- " + paciente.nombre + " (" + paciente.tipoConsulta + ")");
+            
+            }
+
+        } else if (!colaMedia.isEmpty()) {
+            
+            for (Paciente paciente : colaMedia) {
+
+                System.out.println("- " + paciente.nombre + " (" + paciente.tipoConsulta + ")");
+            
+            }
+        
+        } else if (!colaBaja.isEmpty()) {
+            
+            for (Paciente paciente : colaBaja) {
+
+                System.out.println("- " + paciente.nombre + " (" + paciente.tipoConsulta + ")");
+            
+            }
+
+        } else if (!colaOdontologia.isEmpty()) {
+            
+            for (Paciente paciente : colaOdontologia) {
+
+                System.out.println("- " + paciente.nombre + " (" + paciente.tipoConsulta + ")");
+            
+            }
+
+        }
+
         return colaAlta.isEmpty() && colaMedia.isEmpty() && colaBaja.isEmpty() && colaOdontologia.isEmpty();
     
     }

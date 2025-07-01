@@ -43,6 +43,12 @@ public class SalaOdontologia extends Thread {
 
         while (horario.getHora() < horario.getHoraCierre() || !mlq.getColasVacias()) {
             
+            if (horario.getHora() >= horario.getHoraCierre() && !mlq.getColasVacias()) {
+                
+                //System.out.println("Sala de Odontología: Hora de cierre alcanzada, pero hay pacientes en espera.");
+                
+            }
+
             try {
                 
                 Paciente paciente = mlq.tomarPacienteOdontologia();

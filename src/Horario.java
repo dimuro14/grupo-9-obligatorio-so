@@ -46,8 +46,7 @@ public class Horario extends Thread {
             Paciente nuevoPaciente = Paciente.crearPacienteAleatorio();
 
             if (odontologo == false) {
-
-                //Si no hay odontologo, solo se pueden agregar pacientes de tipo Consulta General
+                
                 if (nuevoPaciente.tipoConsulta.equals("CarneDeSalud") && nuevoPaciente.informeOdontologo == false) {
                     
                     System.out.println("Nuevo paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") rechazado: No tiene informe odontólogico y no hay odontólogo.");
@@ -72,8 +71,22 @@ public class Horario extends Thread {
         for (int j = 0; j < pacientesPorHora; j++) {
             
             Paciente nuevoPaciente = Paciente.crearPacienteAleatorio();
-            mlq.agregarACola(nuevoPaciente);
+
+            if (odontologo == false) {
+                
+                if (nuevoPaciente.tipoConsulta.equals("CarneDeSalud") && nuevoPaciente.informeOdontologo == false) {
+                    
+                    System.out.println("Nuevo paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") rechazado: No tiene informe odontólogico y no hay odontólogo.");
+                    Logger.log("Nuevo paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") rechazado: No tiene informe odontólogico y no hay odontólogo.");
+                    
+                    continue;
+                
+                }
+
+            }
             
+            mlq.agregarACola(nuevoPaciente);
+
             System.out.println("Nuevo paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") ingresado.");
             Logger.log("Nuevo paciente " + nuevoPaciente.nombre + " (" + nuevoPaciente.tipoConsulta + ") ingresado.");
         
@@ -134,7 +147,32 @@ public class Horario extends Thread {
 
         System.out.println("Centro Médico - Cerrado");
         Logger.log("Centro Médico - Cerrado");
+
+        //Esperar a que las colas estén vacías
+        while (!mlq.getColasVacias()) {
+            
+            try {
+                
+                Thread.sleep(100);
+            
+            } catch (InterruptedException e) {
+                
+                e.printStackTrace();
+            
+            }
         
+        }
+        
+        try {
+            
+            Thread.sleep(200);
+        
+        } catch (InterruptedException e) {
+            
+            e.printStackTrace();
+
+        }
+
         monitor.stop();
         monitor.logReport();
         Estadisticas.report();        
