@@ -39,15 +39,12 @@ public class MonitorRecursos implements Runnable {
         running = false;
     }
 
-    /** Vuelca al log todas las muestras y un resumen estadístico. */
     public void logReport() {
         Logger.log("=== Informe de recursos del sistema ===");
-        // 1) Volcar cada muestra cruda (opcional si son pocas)
         for (ResourceSample s : samples) {
             Logger.log(s.toString());
         }
 
-        // 2) Calcular promedios y máximos
         double avgSysCpu = samples.stream().mapToDouble(ResourceSample::getSysCpu).average().orElse(0);
         double avgProcCpu = samples.stream().mapToDouble(ResourceSample::getProcCpu).average().orElse(0);
         long maxHeapUsed = samples.stream().mapToLong(ResourceSample::getHeapUsed).max().orElse(0);
@@ -60,7 +57,6 @@ public class MonitorRecursos implements Runnable {
         Logger.log("========================================");
     }
 
-    /** Clase interna para almacenar una medición puntual */
     private static class ResourceSample {
         private final long timestamp;
         private final double sysCpu, procCpu;
