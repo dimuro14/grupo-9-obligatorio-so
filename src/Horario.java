@@ -10,16 +10,17 @@ public class Horario extends Thread {
     int nroInicialPacientes = 0;
     int pacientesPorHora = 0;
     boolean odontologo = false;
+    private final MonitorRecursos monitor;
 
-    public Horario(MLQ mlq, int nroInicialPacientes, int pacientesPorHora, boolean odontologo, Semaphore apertura) {
-        
+    public Horario(MLQ mlq, int nroInicialPacientes, int pacientesPorHora, boolean odontologo, Semaphore apertura, MonitorRecursos monitor) {
+        super("Horario");
         this.hora = new AtomicInteger(8);
         this.mlq = mlq;
         this.nroInicialPacientes = nroInicialPacientes;
         this.pacientesPorHora = pacientesPorHora;
         this.odontologo = odontologo;
         this.apertura = apertura;
-
+        this.monitor = monitor;
     }
 
     public int getHora() {
@@ -131,8 +132,11 @@ public class Horario extends Thread {
 
         System.out.println("Centro Médico - Cerrado");
         Logger.log("Centro Médico - Cerrado");
-        
+        monitor.stop();
+        monitor.logReport();
         Estadisticas.report();
+
+        
     
     }
 	    

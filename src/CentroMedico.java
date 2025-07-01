@@ -12,11 +12,16 @@ public class CentroMedico {
 		Semaphore medicos = new Semaphore(2);
 		Semaphore enfermeros = new Semaphore(1);
 
+		// Arrancamos monitor en un hilo aparte (ej. cada 1 s)
+        MonitorRecursos monitor = new MonitorRecursos(1000);
+        Thread hiloMon = new Thread(monitor, "ResourceMonitor");
+        hiloMon.start();
+
 		//Inicializar MLQ
 		MLQ mlq = new MLQ();
 
 		//De 8:00 a 20:00
-		Horario horario = new Horario(mlq, nroInicialPacientes, pacientesPorHora, odontologo, apertura);
+		Horario horario = new Horario(mlq, nroInicialPacientes, pacientesPorHora, odontologo, apertura, monitor);
 		horario.start();
 
 		apertura.acquire();
