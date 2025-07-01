@@ -1,50 +1,222 @@
 ==== INICIO DE SIMULACION ====
-[23:52:38.669173800] Simulación iniciada
-[23:52:38.744741700] Agregando pacientes iniciales:
-[23:52:38.749744200] Nuevo paciente Carlos (Emergencia) ingresado.
-[23:52:38.761756800] Nuevo paciente Sofía (ConsultaGeneral) ingresado.
-[23:52:38.771747100] Nuevo paciente Luis (CarneDeSalud) rechazado: No tiene informe odontólogico y no hay odontólogo.
-[23:52:38.774745900] Nuevo paciente Juan (Emergencia) ingresado.
-[23:52:38.776746700] Centro Médico - Abierto
-[23:52:38.826320600] Hora: 8:00
-[23:52:38.953375600] Consultorio Médico 1: Paciente Carlos (Emergencia) en espera.
-[23:52:39.181364600] Consultorio Médico 2: Paciente Juan (Emergencia) en espera.
-[23:52:39.424989100] Consultorio Médico 1: Esperando médico.
-[23:52:39.442036900] Consultorio Médico 2: Esperando médico.
-[23:52:39.554562] Consultorio Médico 1: Esperando asistente.
-[23:52:39.666233500] Consultorio Médico 2: Esperando asistente.
-[23:52:39.746721200] Consultorio Médico 1: Atendiendo a Carlos (Emergencia).
-[23:52:40.002781100] Nuevo paciente Pedro (Emergencia) ingresado.
-[23:52:40.024309100] Sala de Emergencia: Paciente Pedro (Emergencia) en espera.
-[23:52:40.026307400] Nuevo paciente Sofía (ConsultaGeneral) ingresado.
-[23:52:40.028306500] Consultorio Médico 1: Terminó de atender a Carlos (Emergencia).
-[23:52:40.029316600] Consultorio Médico 2: Atendiendo a Juan (Emergencia).
-[23:52:40.030311800] Sala de Emergencia: Esperando médico.
-[23:52:40.097324500] Hora: 9:00
-[23:52:40.147859600] Sala de Emergencia: Esperando asistente.
-[23:52:40.160852700] Consultorio Médico 1: Paciente Sofía (ConsultaGeneral) en espera.
-[23:52:40.187856600] Consultorio Médico 1: Esperando médico.
-[23:52:40.324714] Consultorio Médico 1: Esperando asistente.
-[23:52:40.468271900] Sala de Emergencia: Atendiendo a Pedro (Emergencia).
-[23:52:40.483265500] Consultorio Médico 2: Terminó de atender a Juan (Emergencia).
-[23:52:40.586815800] Consultorio Médico 2: Paciente Sofía (ConsultaGeneral) en espera.
-[23:52:40.619492] Consultorio Médico 2: Esperando médico.
-[23:52:40.709152700] Consultorio Médico 2: Esperando asistente.
-[23:52:40.711168300] Consultorio Médico 1: Atendiendo a Sofía (ConsultaGeneral).
-[23:52:40.729166700] Sala de Emergencia: Terminó de atender a Pedro (Emergencia).
-[23:52:41.045450] Consultorio Médico 2: Atendiendo a Sofía (ConsultaGeneral).
-[23:52:41.060919600] Consultorio Médico 1: Terminó de atender a Sofía (ConsultaGeneral).
-[23:52:41.347431800] Nuevo paciente Ana (Urgencia) ingresado.
-[23:52:41.365431400] Consultorio Médico 1: Paciente Ana (Urgencia) en espera.
-[23:52:41.370442900] Sala de Emergencia: Paciente Sofía (Emergencia) en espera.
-[23:52:41.371444900] Nuevo paciente Sofía (Emergencia) ingresado.
-[23:52:41.372433400] Consultorio Médico 2: Terminó de atender a Sofía (ConsultaGeneral).
-[23:52:41.538277500] Sala de Emergencia: Esperando médico.
-[23:52:41.603782] Hora: 10:00
-[23:52:41.627302900] Consultorio Médico 1: Esperando médico.
-[23:52:41.696346400] Sala de Emergencia: Esperando asistente.
-[23:52:41.789803600] Consultorio Médico 1: Esperando asistente.
-[23:52:41.793793500] Sala de Emergencia: Atendiendo a Sofía (Emergencia).
-[23:52:42.026254200] Consultorio Médico 1: Atendiendo a Ana (Urgencia).
-[23:52:42.028332300] Sala de Emergencia: Terminó de atender a Sofía (Emergencia).
-[23:52:42.339014600] Consultorio Médico 1: Terminó de atender a Ana (Urgencia).
+[01:04:05.869503900] Simulación iniciada
+[01:04:05.945050600] Agregando pacientes iniciales:
+[01:04:05.976048600] Nuevo paciente Ana (Urgencia) ingresado.
+[01:04:05.987044500] Nuevo paciente Javier (CarneDeSalud) rechazado: No tiene informe odontólogico y no hay odontólogo.
+[01:04:06.015038700] Nuevo paciente Javier (CarneDeSalud) ingresado.
+[01:04:06.037047600] Nuevo paciente Luis (CarneDeSalud) ingresado.
+[01:04:06.050026200] Centro Médico - Abierto
+[01:04:06.101560900] Hora: 8:00
+[01:04:06.238690900] Consultorio Médico 1: Paciente Ana (Urgencia) en espera.
+[01:04:06.264425] Consultorio Médico 1: Esperando médico.
+[01:04:06.361213500] Consultorio Médico 1: Esperando asistente.
+[01:04:06.411589100] Sala de Enfermería 1: Paciente Javier (CarneDeSalud).
+[01:04:06.433310900] Consultorio Médico 1: Atendiendo a Ana (Urgencia).
+[01:04:06.500443900] Sala de Enfermería 1: Esperando enfermero.
+[01:04:06.783697300] Sala de Enfermería 1: Atendiendo a Javier (CarneDeSalud).
+[01:04:06.857256300] Consultorio Médico 1: Terminó de atender a Ana (Urgencia).
+[01:04:07.163783] Sala de Enfermería 1: Terminó de atender a Javier (CarneDeSalud).
+[01:04:07.258282500] Sala de Enfermería 1: Se transfirió al paciente Javier (CarneDeSalud) a EntrevistaMedica.
+[01:04:07.530277400] Nuevo paciente Marta (Urgencia) ingresado.
+[01:04:07.618795900] Consultorio Médico 2: Paciente Marta (Urgencia) en espera.
+[01:04:07.634830100] Consultorio Médico 1: Paciente Javier (EntrevistaMedica) en espera.
+[01:04:07.649359600] Sala de Enfermería 1: Paciente Luis (CarneDeSalud).
+[01:04:07.652357800] Consultorio Médico 2: Esperando médico.
+[01:04:07.664353] Sala de Enfermería 1: Esperando enfermero.
+[01:04:07.665356] Consultorio Médico 1: Esperando médico.
+[01:04:07.666357700] Nuevo paciente Carlos (Urgencia) ingresado.
+[01:04:07.686351400] Consultorio Médico 2: Esperando asistente.
+[01:04:07.693343100] Sala de Enfermería 1: Atendiendo a Luis (CarneDeSalud).
+[01:04:07.695349600] Consultorio Médico 1: Esperando asistente.
+[01:04:07.696346800] Hora: 9:00
+[01:04:07.912360] Sala de Enfermería 1: Terminó de atender a Luis (CarneDeSalud).
+[01:04:07.915360800] Consultorio Médico 2: Atendiendo a Marta (Urgencia).
+[01:04:07.916357200] Sala de Enfermería 1: Se transfirió al paciente Luis (CarneDeSalud) a EntrevistaMedica.
+[01:04:08.144392700] Consultorio Médico 1: Atendiendo a Javier (EntrevistaMedica).
+[01:04:08.146921900] Consultorio Médico 2: Terminó de atender a Marta (Urgencia).
+[01:04:08.160914800] Consultorio Médico 2: Paciente Carlos (Urgencia) en espera.
+[01:04:08.162919600] Consultorio Médico 2: Esperando médico.
+[01:04:08.217907900] Consultorio Médico 2: Esperando asistente.
+[01:04:08.369920400] Consultorio Médico 2: Atendiendo a Carlos (Urgencia).
+[01:04:08.371934600] Consultorio Médico 1: Terminó de atender a Javier (EntrevistaMedica).
+[01:04:08.418916100] Consultorio Médico 1: Se entregó el carne de salud al paciente Javier (EntrevistaMedica).
+[01:04:08.445453300] Consultorio Médico 1: Paciente Luis (EntrevistaMedica) en espera.
+[01:04:08.479445800] Consultorio Médico 1: Esperando médico.
+[01:04:08.529444100] Consultorio Médico 1: Esperando asistente.
+[01:04:08.621955] Consultorio Médico 2: Terminó de atender a Carlos (Urgencia).
+[01:04:08.747006400] Consultorio Médico 1: Atendiendo a Luis (EntrevistaMedica).
+[01:04:09.036027400] Nuevo paciente Marta (ConsultaGeneral) ingresado.
+[01:04:09.047571400] Consultorio Médico 2: Paciente Marta (ConsultaGeneral) en espera.
+[01:04:09.141557700] Consultorio Médico 2: Esperando médico.
+[01:04:09.154065200] Nuevo paciente Carlos (ConsultaGeneral) ingresado.
+[01:04:09.185068100] Consultorio Médico 1: Terminó de atender a Luis (EntrevistaMedica).
+[01:04:09.200054] Consultorio Médico 2: Esperando asistente.
+[01:04:09.244580800] Hora: 10:00
+[01:04:09.248593700] Consultorio Médico 1: Se entregó el carne de salud al paciente Luis (EntrevistaMedica).
+[01:04:09.250592500] Consultorio Médico 2: Atendiendo a Marta (ConsultaGeneral).
+[01:04:09.252592300] Consultorio Médico 1: Paciente Carlos (ConsultaGeneral) en espera.
+[01:04:09.327541200] Consultorio Médico 1: Esperando médico.
+[01:04:09.400007] Consultorio Médico 1: Esperando asistente.
+[01:04:09.551352900] Consultorio Médico 1: Atendiendo a Carlos (ConsultaGeneral).
+[01:04:09.555341600] Consultorio Médico 2: Terminó de atender a Marta (ConsultaGeneral).
+[01:04:09.858415] Consultorio Médico 1: Terminó de atender a Carlos (ConsultaGeneral).
+[01:04:10.449556700] Nuevo paciente Javier (Urgencia) ingresado.
+[01:04:10.492560200] Consultorio Médico 1: Paciente Javier (Urgencia) en espera.
+[01:04:10.584045300] Nuevo paciente Marta (CarneDeSalud) rechazado: No tiene informe odontólogico y no hay odontólogo.
+[01:04:10.625053500] Consultorio Médico 1: Esperando médico.
+[01:04:10.669567200] Hora: 11:00
+[01:04:10.686556900] Consultorio Médico 1: Esperando asistente.
+[01:04:10.755068300] Consultorio Médico 1: Atendiendo a Javier (Urgencia).
+[01:04:11.075694500] Consultorio Médico 1: Terminó de atender a Javier (Urgencia).
+[01:04:11.857670800] Nuevo paciente Javier (Urgencia) ingresado.
+[01:04:11.869669100] Consultorio Médico 1: Paciente Javier (Urgencia) en espera.
+[01:04:11.876677700] Nuevo paciente Javier (Urgencia) ingresado.
+[01:04:11.878676500] Consultorio Médico 1: Esperando médico.
+[01:04:11.880668400] Hora: 12:00
+[01:04:11.881666300] Consultorio Médico 1: Esperando asistente.
+[01:04:11.904685600] Consultorio Médico 1: Atendiendo a Javier (Urgencia).
+[01:04:11.995202100] Consultorio Médico 2: Paciente Javier (Urgencia) en espera.
+[01:04:12.107708900] Consultorio Médico 2: Esperando médico.
+[01:04:12.176242700] Consultorio Médico 2: Esperando asistente.
+[01:04:12.192251300] Consultorio Médico 1: Terminó de atender a Javier (Urgencia).
+[01:04:12.243236800] Consultorio Médico 2: Atendiendo a Javier (Urgencia).
+[01:04:12.535766200] Consultorio Médico 2: Terminó de atender a Javier (Urgencia).
+[01:04:13.047852200] Nuevo paciente Sofía (ConsultaGeneral) ingresado.
+[01:04:13.132857100] Consultorio Médico 1: Paciente Sofía (ConsultaGeneral) en espera.
+[01:04:13.248016300] Consultorio Médico 1: Esperando médico.
+[01:04:13.292545300] Nuevo paciente Javier (Emergencia) ingresado.
+[01:04:13.329656300] Sala de Emergencia: Paciente Javier (Emergencia) en espera.
+[01:04:13.365133100] Consultorio Médico 1: Esperando asistente.
+[01:04:13.370450200] Hora: 13:00
+[01:04:13.374452] Sala de Emergencia: Esperando médico.
+[01:04:13.377452100] Consultorio Médico 1: Atendiendo a Sofía (ConsultaGeneral).
+[01:04:13.394986300] Sala de Emergencia: Esperando asistente.
+[01:04:13.637453] Consultorio Médico 1: Terminó de atender a Sofía (ConsultaGeneral).
+[01:04:13.650974800] Sala de Emergencia: Atendiendo a Javier (Emergencia).
+[01:04:13.937604900] Sala de Emergencia: Terminó de atender a Javier (Emergencia).
+[01:04:14.510255200] Nuevo paciente Carlos (Urgencia) ingresado.
+[01:04:14.543263100] Consultorio Médico 1: Paciente Carlos (Urgencia) en espera.
+[01:04:14.560769700] Consultorio Médico 1: Esperando médico.
+[01:04:14.592755500] Consultorio Médico 1: Esperando asistente.
+[01:04:14.626756] Nuevo paciente Juan (ConsultaGeneral) ingresado.
+[01:04:14.642758200] Consultorio Médico 1: Atendiendo a Carlos (Urgencia).
+[01:04:14.643750] Consultorio Médico 2: Paciente Juan (ConsultaGeneral) en espera.
+[01:04:14.691268800] Consultorio Médico 2: Esperando médico.
+[01:04:14.760796200] Hora: 14:00
+[01:04:14.798776700] Consultorio Médico 2: Esperando asistente.
+[01:04:14.885272800] Consultorio Médico 2: Atendiendo a Juan (ConsultaGeneral).
+[01:04:14.887286200] Consultorio Médico 1: Terminó de atender a Carlos (Urgencia).
+[01:04:15.183759200] Consultorio Médico 2: Terminó de atender a Juan (ConsultaGeneral).
+[01:04:15.885193900] Consultorio Médico 1: Paciente María (Urgencia) en espera.
+[01:04:15.895195500] Consultorio Médico 1: Esperando médico.
+[01:04:15.896187600] Consultorio Médico 1: Esperando asistente.
+[01:04:15.898185800] Consultorio Médico 1: Atendiendo a María (Urgencia).
+[01:04:15.902206300] Nuevo paciente María (Urgencia) ingresado.
+[01:04:15.950688400] Nuevo paciente Marta (Urgencia) ingresado.
+[01:04:15.970695400] Consultorio Médico 2: Paciente Marta (Urgencia) en espera.
+[01:04:15.999687300] Consultorio Médico 2: Esperando médico.
+[01:04:16.043692600] Consultorio Médico 2: Esperando asistente.
+[01:04:16.096211] Hora: 15:00
+[01:04:16.159725500] Consultorio Médico 2: Atendiendo a Marta (Urgencia).
+[01:04:16.182729900] Consultorio Médico 1: Terminó de atender a María (Urgencia).
+[01:04:16.475231600] Consultorio Médico 2: Terminó de atender a Marta (Urgencia).
+[01:04:17.387529600] Nuevo paciente María (Urgencia) ingresado.
+[01:04:17.407083100] Consultorio Médico 1: Paciente María (Urgencia) en espera.
+[01:04:17.528318600] Consultorio Médico 1: Esperando médico.
+[01:04:17.532321600] Consultorio Médico 1: Esperando asistente.
+[01:04:17.535321] Consultorio Médico 1: Atendiendo a María (Urgencia).
+[01:04:17.537331100] Nuevo paciente Pedro (Emergencia) ingresado.
+[01:04:17.540318600] Hora: 16:00
+[01:04:17.543318800] Consultorio Médico 2: Paciente Pedro (Emergencia) en espera.
+[01:04:17.545318200] Consultorio Médico 2: Esperando médico.
+[01:04:17.546883500] Consultorio Médico 2: Esperando asistente.
+[01:04:17.803216] Consultorio Médico 2: Atendiendo a Pedro (Emergencia).
+[01:04:17.854759700] Consultorio Médico 1: Terminó de atender a María (Urgencia).
+[01:04:18.151249500] Consultorio Médico 2: Terminó de atender a Pedro (Emergencia).
+[01:04:18.679702700] Nuevo paciente Ana (ConsultaGeneral) ingresado.
+[01:04:18.739702700] Consultorio Médico 2: Paciente Ana (ConsultaGeneral) en espera.
+[01:04:18.833200600] Consultorio Médico 2: Esperando médico.
+[01:04:18.875710600] Nuevo paciente Javier (Emergencia) ingresado.
+[01:04:18.880704700] Sala de Emergencia: Paciente Javier (Emergencia) en espera.
+[01:04:18.881708900] Consultorio Médico 2: Esperando asistente.
+[01:04:18.928687900] Hora: 17:00
+[01:04:18.940695600] Sala de Emergencia: Esperando médico.
+[01:04:18.942691200] Sala de Emergencia: Esperando asistente.
+[01:04:18.943682900] Consultorio Médico 2: Atendiendo a Ana (ConsultaGeneral).
+[01:04:19.153175100] Sala de Emergencia: Atendiendo a Javier (Emergencia).
+[01:04:19.155196300] Consultorio Médico 2: Terminó de atender a Ana (ConsultaGeneral).
+[01:04:19.443172900] Sala de Emergencia: Terminó de atender a Javier (Emergencia).
+[01:04:20.161187] Nuevo paciente Luis (ConsultaGeneral) ingresado.
+[01:04:20.228167300] Consultorio Médico 1: Paciente Luis (ConsultaGeneral) en espera.
+[01:04:20.284686600] Consultorio Médico 1: Esperando médico.
+[01:04:20.284686600] Nuevo paciente Pedro (ConsultaGeneral) ingresado.
+[01:04:20.286703400] Consultorio Médico 1: Esperando asistente.
+[01:04:20.290688400] Consultorio Médico 1: Atendiendo a Luis (ConsultaGeneral).
+[01:04:20.292691100] Hora: 18:00
+[01:04:20.373229] Consultorio Médico 2: Paciente Pedro (ConsultaGeneral) en espera.
+[01:04:20.437213900] Consultorio Médico 2: Esperando médico.
+[01:04:20.481052600] Consultorio Médico 2: Esperando asistente.
+[01:04:20.511806900] Consultorio Médico 2: Atendiendo a Pedro (ConsultaGeneral).
+[01:04:20.512810100] Consultorio Médico 1: Terminó de atender a Luis (ConsultaGeneral).
+[01:04:20.805777200] Consultorio Médico 2: Terminó de atender a Pedro (ConsultaGeneral).
+[01:04:21.452554800] Nuevo paciente María (CarneDeSalud) ingresado.
+[01:04:21.541554100] Sala de Enfermería 1: Paciente María (CarneDeSalud).
+[01:04:21.657007100] Sala de Enfermería 1: Esperando enfermero.
+[01:04:21.700988700] Nuevo paciente Marta (ConsultaGeneral) ingresado.
+[01:04:21.781157800] Consultorio Médico 2: Paciente Marta (ConsultaGeneral) en espera.
+[01:04:21.840208300] Sala de Enfermería 1: Atendiendo a María (CarneDeSalud).
+[01:04:21.890746700] Hora: 19:00
+[01:04:21.919789200] Consultorio Médico 2: Esperando médico.
+[01:04:21.958313200] Consultorio Médico 2: Esperando asistente.
+[01:04:22.108827200] Consultorio Médico 2: Atendiendo a Marta (ConsultaGeneral).
+[01:04:22.169346400] Sala de Enfermería 1: Terminó de atender a María (CarneDeSalud).
+[01:04:22.298876900] Sala de Enfermería 1: Se transfirió al paciente María (CarneDeSalud) a EntrevistaMedica.
+[01:04:22.600421900] Consultorio Médico 1: Paciente María (EntrevistaMedica) en espera.
+[01:04:22.647416100] Consultorio Médico 2: Terminó de atender a Marta (ConsultaGeneral).
+[01:04:22.710935400] Consultorio Médico 1: Esperando médico.
+[01:04:22.773439] Consultorio Médico 1: Esperando asistente.
+[01:04:22.841430800] Consultorio Médico 1: Atendiendo a María (EntrevistaMedica).
+[01:04:22.957495800] Nuevo paciente Javier (ConsultaGeneral) ingresado.
+[01:04:22.964495700] Consultorio Médico 2: Hora de cierre alcanzada, pero hay pacientes en espera.
+[01:04:22.977492] Nuevo paciente Pedro (Emergencia) ingresado.
+[01:04:22.978504500] Consultorio Médico 2: Paciente Pedro (Emergencia) en espera.
+[01:04:22.981491400] Hora: 20:00
+[01:04:22.982504300] Consultorio Médico 2: Esperando médico.
+[01:04:22.990493200] Centro Médico - Cerrado
+[01:04:22.993487900] Consultorio Médico 2: Esperando asistente.
+[01:04:23.092030100] Consultorio Médico 1: Terminó de atender a María (EntrevistaMedica).
+[01:04:23.093033300] Consultorio Médico 2: Atendiendo a Pedro (Emergencia).
+[01:04:23.098028700] Consultorio Médico 1: Se entregó el carne de salud al paciente María (EntrevistaMedica).
+[01:04:23.109024600] Consultorio Médico 1: Hora de cierre alcanzada, pero hay pacientes en espera.
+[01:04:23.112027200] Consultorio Médico 1: Paciente Javier (ConsultaGeneral) en espera.
+[01:04:23.113033300] Consultorio Médico 1: Esperando médico.
+[01:04:23.115026100] Consultorio Médico 1: Esperando asistente.
+[01:04:23.310188300] Consultorio Médico 1: Atendiendo a Javier (ConsultaGeneral).
+[01:04:23.313186900] Consultorio Médico 2: Terminó de atender a Pedro (Emergencia).
+[01:04:23.324184] === Informe de recursos del sistema ===
+[01:04:23.361752200] [1751342645937] sysCpu=100.00%, procCpu=57.09%, heapUsed=3145728/1564475392
+[01:04:23.362766100] [1751342648537] sysCpu=96.75%, procCpu=51.76%, heapUsed=3145728/1564475392
+[01:04:23.363774700] [1751342649650] sysCpu=100.00%, procCpu=77.35%, heapUsed=4194304/1564475392
+[01:04:23.364766100] [1751342650796] sysCpu=100.00%, procCpu=80.76%, heapUsed=4194304/1564475392
+[01:04:23.364766100] [1751342651902] sysCpu=100.00%, procCpu=86.99%, heapUsed=4194304/1564475392
+[01:04:23.365758900] [1751342653041] sysCpu=100.00%, procCpu=70.02%, heapUsed=4194304/1564475392
+[01:04:23.366761] [1751342654192] sysCpu=100.00%, procCpu=80.10%, heapUsed=4194304/1564475392
+[01:04:23.369769600] [1751342655395] sysCpu=100.00%, procCpu=83.69%, heapUsed=5242880/1564475392
+[01:04:23.370759900] [1751342656628] sysCpu=99.37%, procCpu=79.14%, heapUsed=5242880/1564475392
+[01:04:23.371765300] [1751342657768] sysCpu=100.00%, procCpu=64.06%, heapUsed=5242880/1564475392
+[01:04:23.372757400] [1751342658964] sysCpu=100.00%, procCpu=89.77%, heapUsed=5242880/1564475392
+[01:04:23.373756100] [1751342660055] sysCpu=100.00%, procCpu=90.02%, heapUsed=5242880/1564475392
+[01:04:23.374767300] [1751342661287] sysCpu=100.00%, procCpu=81.72%, heapUsed=1286160/1564475392
+[01:04:23.376765300] [1751342662551] sysCpu=100.00%, procCpu=59.26%, heapUsed=1286160/1564475392
+[01:04:23.390750] CPU Sistema  promedio: 99.72%
+[01:04:23.391758] CPU Proceso promedio: 75.12%
+[01:04:23.392765] Heap usado   promedio: 4003549 bytes
+[01:04:23.393750300] Heap usado   máximo : 5242880 bytes
+[01:04:23.394751700] ========================================
+[01:04:23.395752] === ESTADÍSTICAS DE LA SIMULACIÓN ===
+[01:04:23.396753700] Total pacientes atendidos: 26
+[01:04:23.397763300] Pacientes/hora promedio: 2.17
+[01:04:23.397763300] Espera promedio (h): 0.00
+[01:04:23.398759200] Atención promedio (ms): 0.00
+[01:04:23.399763200] ====================================
+[01:04:23.511723600] Consultorio Médico 1: Terminó de atender a Javier (ConsultaGeneral).

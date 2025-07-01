@@ -24,6 +24,12 @@ public class ConsultorioMedico extends Thread {
 
         while (horario.getHora() < horario.getHoraCierre() || !mlq.getColasVacias()) {
 
+            if (horario.getHora() >= horario.getHoraCierre() && !mlq.getColasVacias()) {
+                
+                //System.out.println(getName() + ": Hora de cierre alcanzada, pero hay pacientes en espera.");
+                
+            }
+
             try {
                 
                 // Tomar paciente (esperar si no hay)
@@ -64,14 +70,18 @@ public class ConsultorioMedico extends Thread {
                 if ((paciente.tipoConsulta).equalsIgnoreCase("EntrevistaMedica")){
                     
                     if (!paciente.informeOdontologo){
-                        
-                        System.out.println(getName() + ": Se transfirió al paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ") a la sala de odontología.");
-                        Logger.log(getName() + ": Se transfirió al paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ") a la sala de odontología.");
-                        
-                        paciente.SetTipoConsulta("ConsultaOdontologia");
-                        mlq.agregarAColaOdontologia(paciente);    
+                    
+                        if (horario.getHora() < horario.getHoraCierre()) {
+
+                            System.out.println(getName() + ": Se transfirió al paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ") a la sala de odontología.");
+                            Logger.log(getName() + ": Se transfirió al paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ") a la sala de odontología.");
                             
-                        Estadisticas.sumarPaciente();
+                            paciente.SetTipoConsulta("ConsultaOdontologia");
+                            mlq.agregarAColaOdontologia(paciente);    
+                                
+                            Estadisticas.sumarPaciente(); 
+
+                        }
 
                     } else {
                         

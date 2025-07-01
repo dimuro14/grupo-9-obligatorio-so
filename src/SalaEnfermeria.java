@@ -23,6 +23,12 @@ public class SalaEnfermeria extends Thread {
             
             try {
                 
+                if (horario.getHora() >= horario.getHoraCierre() && !mlq.getColasVacias()) {
+                
+                    //System.out.println("" + getName() + ": Hora de cierre alcanzada, pero hay pacientes en espera.");
+                    
+                }
+
                 Paciente paciente = mlq.tomarPaciente("SalaEnfermeria");
 
                 if (paciente == null) {

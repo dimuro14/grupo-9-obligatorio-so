@@ -26,6 +26,12 @@ public class SalaEmergencia extends Thread {
 
             try {
                 
+                if (horario.getHora() >= horario.getHoraCierre() && !mlq.getColasVacias()) {
+                
+                    //System.out.println("" + getName() + ": Hora de cierre alcanzada, pero hay pacientes en espera.");
+                
+                }
+
                 // Tomar paciente (esperar si no hay)
                 // Agregar semáforos de paciente
                 Paciente paciente = mlq.tomarPaciente("SalaEmergencia");
