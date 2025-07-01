@@ -19,36 +19,24 @@ public class Main {
         boolean salaReservadaEmergencia;
         boolean odontologo;
 
-        // Simulacro 0 - Test
-        nroInicialPacientes = 1;         // Emergencia, Control, Análisis, Análisis
-        pacientesPorHora = 1;
+        // Simulacro 1 – Día normal
+        nroInicialPacientes = 4;
+        pacientesPorHora = 2;
         tiempoConsulta = 200;
         numMedicos = 2;
         numEnfermeros = 1;
         salaReservadaEmergencia = true;
         odontologo = false;
 
-        // ---------------------------
-        // Simulacro 1 – Día normal
-        // nroInicialPacientes = 4;         // Emergencia, Control, Análisis, Análisis
-        // pacientesPorHora = 2;
-        // tiempoConsulta = 200;
-        // numMedicos = 2;
-        // numEnfermeros = 1;
-        // salaReservadaEmergencia = true;
-        // odontologo = false;
-
-        // ---------------------------
         // Simulacro 2 – Sin sala de emergencia
-        // nroInicialPacientes = 5;
-        // pacientesPorHora = 1;
-        // tiempoConsulta = 200;
-        // numMedicos = 2;
-        // numEnfermeros = 1;
-        // salaReservadaEmergencia = false;
-        // odontologo = false;
+        //nroInicialPacientes = 5;
+        //pacientesPorHora = 1;
+        //tiempoConsulta = 200;
+        //numMedicos = 2;
+        //numEnfermeros = 1;
+        //salaReservadaEmergencia = false;
+        //odontologo = false;
 
-        // ---------------------------
         // Simulacro 3 – Carga crítica
         // nroInicialPacientes = 10;
         // pacientesPorHora = 5;

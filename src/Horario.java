@@ -134,11 +134,10 @@ public class Horario extends Thread {
 
         System.out.println("Centro Médico - Cerrado");
         Logger.log("Centro Médico - Cerrado");
+        
         monitor.stop();
         monitor.logReport();
-        Estadisticas.report();
-
-        
+        Estadisticas.report();        
     
     }
 	    
