@@ -5,12 +5,12 @@ public class CentroMedico {
 	//Añadir constructor con parámetros?
 
 	@SuppressWarnings("unused")
-    public static void start(int nroInicialPacientes, int pacientesPorHora, int tiempoConsulta, boolean salaReservadaEmergencia, boolean odontologo) throws Exception {
+    public static void start(int nroInicialPacientes, int pacientesPorHora, int tiempoConsulta, int numMedicos, int numEnfermeros, boolean salaReservadaEmergencia, boolean odontologo) throws Exception {
 
 		Semaphore apertura = new Semaphore(0);
 
-		Semaphore medicos = new Semaphore(2);
-		Semaphore enfermeros = new Semaphore(1);
+		Semaphore medicos = new Semaphore(numMedicos);
+		Semaphore enfermeros = new Semaphore(numEnfermeros);
 
 		//Inicializar MLQ
 		MLQ mlq = new MLQ();
@@ -21,26 +21,26 @@ public class CentroMedico {
 
 		apertura.acquire();
 
-		ConsultorioMedico consultorio1 = new ConsultorioMedico("Consultorio Médico 1", horario, mlq, medicos, enfermeros);
+		ConsultorioMedico consultorio1 = new ConsultorioMedico("Consultorio Médico 1", horario, mlq, medicos, enfermeros, tiempoConsulta);
 		consultorio1.start();
 
-		//ConsultorioMedico consultorio2 = new ConsultorioMedico("Consultorio Médico 2", horario, mlq, medicos, enfermeros, odontologo);
-		//consultorio2.start();
+		ConsultorioMedico consultorio2 = new ConsultorioMedico("Consultorio Médico 2", horario, mlq, medicos, enfermeros, tiempoConsulta);
+		consultorio2.start();
 
-		SalaEnfermeria salaEnfermeria = new SalaEnfermeria("Sala de Enfermería 1", horario, mlq, enfermeros);
+		SalaEnfermeria salaEnfermeria = new SalaEnfermeria("Sala de Enfermería 1", horario, mlq, enfermeros, tiempoConsulta);
 		salaEnfermeria.start();
 		
 		if (salaReservadaEmergencia == true) {
 			
-			//SalaEmergencia salaEmergencia = new SalaEmergencia("Sala de Emergencia", horario, mlq, medicos, enfermeros);
-			//salaEmergencia.start();
+			SalaEmergencia salaEmergencia = new SalaEmergencia("Sala de Emergencia", horario, mlq, medicos, enfermeros, tiempoConsulta);
+			salaEmergencia.start();
 		
 		}
 
 		if (odontologo == true) {
 			
 			Semaphore odontologos = new Semaphore(1);
-			SalaOdontologia salaOdontologia = new SalaOdontologia("Sala de Odontología 1", horario, odontologos);
+			SalaOdontologia salaOdontologia = new SalaOdontologia("Sala de Odontología", horario, mlq, odontologos, tiempoConsulta);
 			salaOdontologia.start();
 		
 		}

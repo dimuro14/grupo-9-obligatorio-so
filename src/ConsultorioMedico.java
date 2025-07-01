@@ -6,22 +6,24 @@ public class ConsultorioMedico extends Thread {
     MLQ mlq = null;
     Semaphore medicos = null;
     Semaphore enfermeros = null;
+    int tiempoConsulta = 0;
 
-    public ConsultorioMedico(String str, Horario horario, MLQ mlq, Semaphore medicos, Semaphore enfermeros) {
+    public ConsultorioMedico(String str, Horario horario, MLQ mlq, Semaphore medicos, Semaphore enfermeros, int tiempoConsulta) {
         
         super(str);
         this.horario = horario;
         this.mlq = mlq;
         this.medicos = medicos;
         this.enfermeros = enfermeros;
-        
+        this.tiempoConsulta = tiempoConsulta;
+
     }
 
     @Override
     public void run() {
 
-        while (horario.getHora() < horario.getHoraCierre()) {
-            
+        while (horario.getHora() < horario.getHoraCierre() || !mlq.getColasVacias()) {
+
             try {
                 
                 // Tomar paciente (esperar si no hay)
@@ -49,7 +51,7 @@ public class ConsultorioMedico extends Thread {
                 Logger.log(getName() + ": Atendiendo a " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
 
                 // Simular atención médica
-                Thread.sleep(200);
+                Thread.sleep(tiempoConsulta);
                 
                 medicos.release();
                 enfermeros.release();
@@ -61,16 +63,16 @@ public class ConsultorioMedico extends Thread {
                     
                     if (!paciente.informeOdontologo){
                         
-                        paciente.SetTipoConsulta("ConsultaOdontologica");
-                        mlq.agregarACola(paciente);
+                        System.out.println(getName() + ": Se transfirió al paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ") a la sala de odontología.");
+                        Logger.log(getName() + ": Se transfirió al paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ") a la sala de odontología.");
                         
-                        System.out.println(getName() + ": Se transfirio el paciente a Consulta de Odontologia " + paciente.nombre);
-                        Logger.log(getName() + ": Se transfirio el paciente a Consulta de Odontologia " + paciente.nombre);
-                    
+                        paciente.SetTipoConsulta("ConsultaOdontologia");
+                        mlq.agregarAColaOdontologia(paciente);    
+                        
                     } else {
                         
-                        System.out.println("Se entrego el carne de salud a " + paciente.nombre);
-                        Logger.log(getName() + ": Se transfirio el paciente a Consulta de Odontologia " + paciente.nombre);
+                        System.out.println(getName() + ": Se entregó el carne de salud al paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
+                        Logger.log(getName() + ": Se entregó el carne de salud al paciente " + paciente.nombre + " (" + paciente.tipoConsulta + ").");
 
                     }
                     

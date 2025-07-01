@@ -11,7 +11,7 @@ public class MLQ {
     //Atención de curaciones y análisis clínicos
     ConcurrentLinkedQueue<Paciente> colaBaja = null;
 
-    private static Map<String, String> consultaASala = new HashMap<>();
+    private static final Map<String, String> consultaASala = new HashMap<>();
 
     public MLQ() {
 
@@ -19,12 +19,11 @@ public class MLQ {
         this.colaMedia = new ConcurrentLinkedQueue<>();
         this.colaBaja = new ConcurrentLinkedQueue<>();
 
-        consultaASala.put("Emergencia", "SalaEmergencia");
+        consultaASala.put("Emergencia", "ConsultorioMedico");
         consultaASala.put("Urgencia", "ConsultorioMedico");
         consultaASala.put("CarneDeSalud", "SalaEnfermeria");
         consultaASala.put("EntrevistaMedica", "ConsultorioMedico");
         consultaASala.put("ConsultaGeneral", "ConsultorioMedico");
-        consultaASala.put("InformeOdontologia", "SalaOdontologia");
     
     }
 
@@ -81,32 +80,69 @@ public class MLQ {
     
     }
 
-    public Paciente tomarPaciente(String sala) {
+    public synchronized Paciente tomarPaciente(String sala) {
         
         //Tomar un paciente de la cola de mayor prioridad que tenga pacientes
         //Si no hay pacientes en ninguna cola, retornar null
         
-        if (!colaAlta.isEmpty() && (sala.equals(obtenerSala(colaAlta.peek().tipoConsulta)) || sala.equals("ConsultorioMedico"))) {
+        if (!colaAlta.isEmpty() && (sala.equals(obtenerSala(colaAlta.peek().tipoConsulta)) || sala.equals("SalaEmergencia"))) {
             
             //System.out.println("Tomando paciente de cola alta: " + colaAlta.peek().nombre);
-            return colaAlta.poll();
+            Paciente paciente = colaAlta.poll();
+
+            return paciente;
         
         } else if (!colaMedia.isEmpty() && sala.equals(obtenerSala(colaMedia.peek().tipoConsulta))) {
             
             //System.out.println("Tomando paciente de cola media: " + colaMedia.peek().nombre);
-            return colaMedia.poll();
-        
+            Paciente paciente = colaMedia.poll();
+
+            return paciente;
+
         } else if (!colaBaja.isEmpty() && sala.equals(obtenerSala(colaBaja.peek().tipoConsulta))) {
             
             //System.out.println("Tomando paciente de cola baja: " + colaBaja.peek().nombre);
-            return colaBaja.poll();
+
+            Paciente paciente = colaBaja.poll();
+
+            return paciente;
         
         } else {
             
             //System.out.println("No hay pacientes en la cola de " + sala);
+            
             return null;
 
         }
+    
+    }
+
+    ConcurrentLinkedQueue<Paciente> colaOdontologia = new ConcurrentLinkedQueue<>();
+
+    public void agregarAColaOdontologia(Paciente paciente) {
+        
+        colaOdontologia.add(paciente);
+    
+    }
+
+    public synchronized Paciente tomarPacienteOdontologia() {
+
+        if (!colaOdontologia.isEmpty()) {
+            
+            Paciente paciente = colaOdontologia.poll();
+            return paciente;
+        
+        } else {
+            
+            return null;
+
+        }
+    
+    }
+
+    public boolean getColasVacias() {
+        
+        return colaAlta.isEmpty() && colaMedia.isEmpty() && colaBaja.isEmpty() && colaOdontologia.isEmpty();
     
     }
 
